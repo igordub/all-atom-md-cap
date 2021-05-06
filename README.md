@@ -50,7 +50,10 @@ Keep CAP fixed with weak restraints
 RES 1 403
 END
 END
-A.2.2 Pressure Equilibration
+```
+
+### A.2.2 Pressure Equilibration
+```
 CAP_2cAMP: density equilibration
 &cntrl
 imin=0, irest=1,
