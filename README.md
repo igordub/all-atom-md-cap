@@ -52,7 +52,7 @@ END
 END
 ```
 
-### A.2.2 Pressure Equilibration
+#### A.2.2 Pressure Equilibration
 ```
 CAP_2cAMP: density equilibration
 &cntrl
@@ -74,7 +74,7 @@ END
 END
 ```
 
-#### A.3 Production MD
+### A.3 Production MD
 ```
 CAP_2cAMP: 4000ps of production MD
 &cntrl
