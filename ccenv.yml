@@ -1,0 +1,22 @@
+name: amber
+
+channels:
+  - defaults
+  - conda-forge
+  - schrodinger
+  - bioconda
+  - ambermd
+
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - pep8
+  - pip
+  - python
+  - vmd
+  - ambertools=20
+  - pymol
+  - gnuplot
+  - pytraj

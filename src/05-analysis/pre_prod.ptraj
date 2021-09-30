@@ -1,0 +1,3 @@
+trajin data/minimisation/min_solu.ncrst
+trajin data/heating/heat.ncrst
+rms first out protein_backbone.rms @P,O3',O5',C3',C4',C5' time 0.2

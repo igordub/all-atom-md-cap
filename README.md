@@ -198,3 +198,209 @@ vdw-type = Cut-off
 rvdw-switch = 0
 rvdw = 0
 ```
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
+
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+
+# All-atom Molecular Dynamics of the SARS-CoV-2 PLpro
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+We perform all-atom MD simualtion of the SCoV2-PLpro to inform construction of the Elastic Network Model (ENM) for the same protein.
+
+PDB ID: [6WX4](https://www.rcsb.org/structure/6WX4)
+### Built With
+
+* [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/)
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Simply, clone the repo to your machine.
+Clone the repo:
+```bash
+git clone https://github.com/igordub/md-scov2-plpro.git
+```
+
+### Prerequisites
+
+If you have Conda installed on your machine simply create a separate Conda environment and intall AmberTools from the `conda-forge` channel. Alternatively, download and install form the [source](https://ambermd.org/GetAmber.php).
+* AmberTools21
+  ```bash
+  conda create --name AmberTools21
+  conda activate AmberTools21
+  conda install -c conda-forge ambertools=21 compilers
+  ```
+
+Grant execution permissions to a shell script that you want to run
+```bash
+chmod u+x src/structurre/prepare_pdb.sh
+```
+or give the permission to all scritps at once()
+```bash
+chmod u+x src/*/*.sh
+```
+### Installation
+
+No istallation is needed.
+
+<!-- USAGE EXAMPLES -->
+## Usage
+1. Download the strucutre file and configure it for AMBER
+    ```bash
+    ./src/structure/prepare_pdb.sh
+    ```
+
+2. Create parameter and coordinate files for the ligand
+    ```bash
+    ./src/structure/prepare_ligand_ff.sh
+    ```    
+    
+**Note** The shell scripts are configured to be run on the [Viking](https://www.york.ac.uk/it-services/services/viking-computing-cluster/) (research computing clsuter at the University of York). However, computationally easy jobs, like structure configuration and minimisation, can be done on a desktop or laptop in a reasonable amount of time.
+
+## Miscellaneous
+
+- AMBER input files **must** end with an empty line. Otherwise, Fortran executable produe segmentation error:
+  ```
+  At line 639 of file mdin_ctrl_dat.F90 (unit = 5, file = 'src/production/prod.in')
+  Fortran runtime error: End of file
+
+  Error termination. Backtrace:
+  #0  0x7f4a90f4dedb in next_record_r
+    at ../../../libgfortran/io/transfer.c:3144
+  #1  0x7f4a90f50327 in finalize_transfer
+    at ../../../libgfortran/io/transfer.c:3629
+  #2  0x418e42 in ???
+  #3  0x4ae5d0 in ???
+  #4  0x495ace in ???
+  #5  0x4060bc in ???
+  #6  0x7f4a907bf554 in ???
+  #7  0x40a2c6 in ???
+  #8  0xffffffffffffffff in ???
+  ```
+
+<!-- ROADMAP -->
+## Roadmap
+
+See the [open issues](https://github.com/igordub/md-scov2-plpro/issues) for a list of proposed features (and known issues).
+Currently, the main and only issue is in creating a force field modification for the ligand.
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+<!-- CONTACT -->
+## Contact
+
+Igors Dubanevics - [@IgorsDubanevics](https://twitter.com/IgorsDubanevics)
+
+Project Link: [https://github.com/igordub/md-scov2-plpro](https://github.com/igordub/md-scov2-plpro)
+
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+
+<!-- APENDIX -->
+## Apendix
+### Original README
+```
+#####                          Resubmission Scripts                      ######
+
+To treat the ligand seperately to the main protein, a forcefield mod file needs
+to be created. Antechamber.job does this and uses the 6wx4_lig.pdb file for 
+its input. After the forcefield mod file is created, tleap is run using the
+leapscript. (This is where errors are occuring as tleap doesn't recognise
+the ligand atoms). After the crd and top files are created, the minimisation
+can occur. Run min_solu.in and min_solv.in to minimise solute and solvent 
+structure respectively. Heat.in anneals the system and stabalises at 300K. 
+Pres.in carries out pressure equilibration. 
+
+Prod.in runs the amber simulation for 20 ns. To run from prm top files to the 
+final simulatuion use Simulate.job. To just equilibrate the system use 
+Equilibration.job
+
+Cpptraj can be used to interpret the results.
+```
+<!-- REFERENCES -->
+## References
+
+- [Running Minimization and MD (in explicit solvent)](https://ambermd.org/tutorials/basic/tutorial1/section5.htm)
+- [Simulating a pharmaceutical compound using antechamber and the Generalized Amber Force Field](https://ambermd.org/tutorials/basic/tutorial4b/index.php)
