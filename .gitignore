@@ -112,6 +112,7 @@ scratch/*
 *.blg
 
 # Antechamber intermediate files
+antechamber/*
 *.AC
 *.AC0
 *.INF

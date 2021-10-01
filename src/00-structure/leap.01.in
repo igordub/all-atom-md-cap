@@ -1,0 +1,17 @@
+# Initial test of protein/ligand complex compatability
+# 
+# Usage: tleap -s -f src/00-structure/leap.01.in
+
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+
+PRO = loadpdb pdb/02-processed/protein.pdb
+
+LIG = loadmol2 antechamber/ligand.mol2
+loadamberparams antechamber/ligand.frcmod
+
+COM = combine{PRO LIG}
+saveamberparm COM tmp/test.prmtop tmp/test.crd
+savepdb COM tmp/test.pdb
+
+quit
