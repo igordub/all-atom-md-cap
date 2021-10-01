@@ -5,12 +5,14 @@
 source leaprc.protein.ff14SB
 source leaprc.gaff2
 
-PRO = loadpdb pdb/02-processed/protein.pdb
+LIG_A = loadmol2 antechamber/ligand.chainA.mol2
+loadamberparams antechamber/ligand.chainA.frcmod
 
-LIG = loadmol2 antechamber/ligand.mol2
-loadamberparams antechamber/ligand.frcmod
+LIG_B = loadmol2 antechamber/ligand.chainB.mol2
+loadamberparams antechamber/ligand.chainB.frcmod
 
-COM = combine{PRO LIG}
+COM = combine{PRO LIG_A LIG_B}
+
 saveamberparm COM tmp/test.prmtop tmp/test.crd
 savepdb COM tmp/test.pdb
 
