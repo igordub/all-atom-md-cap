@@ -93,8 +93,7 @@ data/*
 tmp/*
 
 # PDB files
-# pdb/*
-# !pdb/external/
+pdb/*
 
 # Output sractch for figures, tables and etc.
 scratch/*
