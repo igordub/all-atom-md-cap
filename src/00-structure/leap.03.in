@@ -1,9 +1,11 @@
-# Combine protein and ligand into a complex
+# Add ions to protein/ligand complex
 # 
-# Usage: tleap -s -f src/00-structure/leap.01.in
+# Usage: tleap -s -f src/00-structure/leap.02.in
 
 source leaprc.protein.ff14SB
 source leaprc.gaff2
+source leaprc.water.tip3p 
+
 
 PRO = loadpdb pdb/02-processed/protein.pdb
 
@@ -11,6 +13,13 @@ LIG = loadmol2 antechamber/ligand.mol2
 loadamberparams antechamber/ligand.frcmod
 
 COM = combine{PRO LIG}
+
+solvateOct COM TIP3PBOX 8
+
+charge COM
+addions COM K+ 1
+charge COM
+
 saveamberparm COM tmp/test.prmtop tmp/test.crd
 savepdb COM tmp/test.pdb
 

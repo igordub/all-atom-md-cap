@@ -1,4 +1,4 @@
-# Solvate protein/ligand complex for MD simulation
+# Solvate protein/ligand complex
 # 
 # Usage: tleap -s -f src/00-structure/leap.02.in
 
