@@ -1,12 +1,12 @@
 #!/bin/bash
-# Heating srtructure
+# All-atom MD simulation: heating
 
-#SBATCH --job-name=heat_6wx4
-#SBATCH --time=00:20:00
+#SBATCH --job-name=heat
+#SBATCH --time=01:00:00
 #SBATCH --mem=5gb
-#SBATCH --nodes=4
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
-#SBATCH --output=heat_6wx4.%j.log
+#SBATCH --output=heat.%j.log
 #SBATCH --mail-type=ALL             
 #SBATCH --mail-user=username@york.ac.uk           
 #SBATCH --account=account_name

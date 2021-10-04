@@ -1,13 +1,14 @@
 #!/bin/bash
-# Production MD
-#SBATCH --job-name=prod_6wx4
+# All-atom MD simulation: production
+
+#SBATCH --job-name=prod
 #SBATCH --time=12:00:00
 #SBATCH --mem=32gb
 #SBATCH --ntasks=1
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --output=prod_%j.log
-#SBATCH --mail-type=BEGIN,END,FAIL              
+#SBATCH --output=prod.%j.log
+#SBATCH --mail-type=ALL              
 #SBATCH --mail-user=username@york.ac.uk           
 #SBATCH --account=account_name
 

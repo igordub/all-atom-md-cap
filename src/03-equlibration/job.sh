@@ -1,12 +1,12 @@
 #!/bin/bash
-# Pressure equilibration
+# All-atom MD simulation: density equilibration
 
-#SBATCH --job-name=pres_6wx4
+#SBATCH --job-name=eq
 #SBATCH --time=02:00:00
 #SBATCH --mem=20gb
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=32
-#SBATCH --output=pres_6wx4.%j.log
+#SBATCH --output=eq.%j.log
 #SBATCH --mail-type=ALL             
 #SBATCH --mail-user=username@york.ac.uk           
 #SBATCH --account=account_name

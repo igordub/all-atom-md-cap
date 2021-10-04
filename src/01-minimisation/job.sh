@@ -1,10 +1,10 @@
 #!/bin/bash
-# Strucutre minimisation
+# All-atom MD simulation: solvet and solute minimisation
 
 #SBATCH --job-name=min
 #SBATCH --time=02:00:00
 #SBATCH --mem=10gb
-#SBATCH --nodes=4
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 #SBATCH --output=min.%j.log
 #SBATCH --mail-type=ALL             
@@ -13,10 +13,10 @@
 
 module load chem/Amber/16-intel-2018b-AmberTools-17-patchlevel-10-15
 
-SRC_DIR="src/minimisation"
+SRC_DIR="src/01-minimisation"
 TMP_DIR="tmp"
-INPUT_DIR="data/structure"
-OUTPUT_DIR="data/minimisation"
+INPUT_DIR="data/00-structure"
+OUTPUT_DIR="data/01-minimisation"
 
 echo My working directory is `pwd`
 echo Running job on host:
@@ -33,7 +33,7 @@ time mpirun -np $SLURM_NTASKS pmemd.MPI -O -i ${SRC_DIR}/01.min_solv.in \
         -ref ${INPUT_DIR}/complex.inpcrd \        
         -inf ${TMP_DIR}/min_solv.mdinfo
    
-# Minimise the solute
+# Minimise the whole system
 time mpirun -np $SLURM_NTASKS pmemd -O -i ${SRC_DIR}/02.min_solu.in \
         -o ${OUTPUT_DIR}/02.min_solu.out \
         -r ${OUTPUT_DIR}/02.min_solu.ncrst \
