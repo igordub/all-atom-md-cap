@@ -1,0 +1,19 @@
+# Performs Principal Component Analysis (PCA) on processed 
+# all atom MD production simulation coordinates
+# Usage: cpptraj -i src/05-analysis/04.run_pca.cpptraj
+
+parm data/05-analysis/protein.no_water.prmtop
+trajin data/05-analysis/prod.no_water.mdcrd
+rms first :*&@CA=
+average crdset structure-average
+createcrd structure-trajectories
+run
+
+crdaction structure-trajectories rms \ 
+  ref structure-average :*&@CA=
+# Calcualte mass-weighted covariance matrix
+crdaction structure-trajectories matrix mwcovar \
+  name structure-covar :*&@CA=
+
+runanalysis diagmatrix structure-covar out data/05-analysis/eigmodes.dat \
+  vecs 100

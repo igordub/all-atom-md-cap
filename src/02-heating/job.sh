@@ -13,22 +13,18 @@
 
 module load chem/Amber/16-intel-2018b-AmberTools-17-patchlevel-10-15
 
-SRC_MIN="src/heat"
+SRC_MIN="src/02-heating"
 TMP_DIR="tmp"
-STRUC_DIR="data/structure"
-INPUT_DIR="data/minimisation"
-OUTPUT_DIR="data/heating"
+STRUC_DIR="data/00-structure"
+INPUT_DIR="data/01-minimisation"
+OUTPUT_DIR="data/02-heating"
 
 echo My working directory is `pwd`
 echo Running job on host:
 echo -e '\t'`hostname` at `date`
 echo
 
-#Run annealing equilibration
-time mpirun -np $SLURM_NTASKS pmemd.MPI -O -i ${SRC_MIN}/heat.in \
-        -c ${INPUT_DIR}/min_solu.ncrst -p ${STRUC_DIR}/protein.prmtop \
-        -ref ${INPUT_DIR}/min_solu.ncrst -o ${OUTPUT_DIR}/heat.out \
-        -r ${OUTPUT_DIR}/heat.ncrst -inf ${TMP_DIR}/heat.mdinfo
+time mpirun -np $SLURM_NTASKS pmemd.MPI -O -i ${SRC_MIN}/heat.in -c ${INPUT_DIR}/02.min_solu.ncrst -p ${STRUC_DIR}/complex.prmtop -ref ${INPUT_DIR}/02.min_solu.ncrst -o ${OUTPUT_DIR}/heat.out -r ${OUTPUT_DIR}/heat.ncrst -inf ${TMP_DIR}/heat.mdinfo
 
 echo
 echo Job completed at `date`

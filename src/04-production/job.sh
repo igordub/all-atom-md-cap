@@ -14,14 +14,14 @@
 
 module load chem/Amber/16-foss-2018a-AmberTools-17-CUDA
 
-# Run Full MD Simulation for 5 ns
 
 echo My working directory is `pwd`
 echo Running job on host:
 echo -e '\t'`hostname` at `date`
 echo
 
-./src/production/run_5.2-10.2ns.sh
+# Run all-atom MD simulation production
+./src/04-production/run_production.sh
 
 echo
 echo Job completed at `date`

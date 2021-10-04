@@ -1,0 +1,10 @@
+# Get B-factors for structure with no water
+# Usage: cpptraj -i src/05-analysis/03.get_bfactors.cpptraj
+
+parm data/05-analysis/complex.no_water.prmtop
+trajin data/05-analysis/prod.no_water.mdcrd
+rms first
+average crdset structure-average
+run
+rms ref structure-average
+atomicfluct out data/05-analysis/bfactors.CA.agr @CA byres bfactor

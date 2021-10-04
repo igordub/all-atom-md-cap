@@ -106,68 +106,29 @@ def main(input_dir, output_dir):
     ax.set_xlabel("Time [ps]")
     ax.set_ylabel("Pres\n[$kcal\:mol^{-1}\:\AA^{-1}$]")    
 
-    axsRight = subfigs[1].subplots(3, 1, sharex=True)
-    ax = axsRight[0]
-    ax.plot(summary_data.index, summary_data['volume'], color=color_cycler[6])
-    ax.set_xlabel("")
-    ax.set_ylabel("Volume [$\AA^{-3}$]")
+    if 'volume' in summary_data.columns:
+        axsRight = subfigs[1].subplots(3, 1, sharex=True)
+        ax = axsRight[0]
+        ax.plot(summary_data.index, summary_data['volume'], color=color_cycler[6])
+        ax.set_xlabel("")
+        ax.set_ylabel("Volume [$\AA^{-3}$]")
 
-    ax = axsRight[1]
-    ax.plot(summary_data.index, summary_data['density'], color=color_cycler[7])
-    ax.set_xlabel("")
-    ax.set_ylabel("Density [$g\:cm^{-3}$]")
+    if 'density' in summary_data.columns:
+        ax = axsRight[1]
+        ax.plot(summary_data.index, summary_data['density'], color=color_cycler[7])
+        ax.set_xlabel("")
+        ax.set_ylabel("Density [$g\:cm^{-3}$]")
 
-    ax = axsRight[2]
-    ax.plot(summary_data.index, summary_data['rmsd'], color=color_cycler[8])
-    ax.set_xlabel("Time [ps]")
-    ax.set_ylabel("RMSD [$\AA$]")
+    if 'rmsd' in summary_data.columns:
+        ax = axsRight[2]
+        ax.plot(summary_data.index, summary_data['rmsd'], color=color_cycler[8])
+        ax.set_xlabel("Time [ps]")
+        ax.set_ylabel("RMSD [$\AA$]")
 
     plt.savefig(join_paths(output_dir, "summary_mdout.pdf"), bbox_inches='tight')
     plt.savefig(join_paths(output_dir, "summary_mdout.png"), bbox_inches='tight')
 
-
     plt.show()
-
-
-    # _, axs = plt.subplots(3,2, figsize=(12,9), constrained_layout=True, sharex=True)
-
-    # ax = axs[0][0]
-    # gs = ax.add_gridspec(3, hspace=0)
-    # subplot_axs= gs.subplots(sharex=True)
-    # subplot_axs[0].plot(summary_data.index, summary_data['eptot'], color=color_cycler[0])
-    # subplot_axs[1].plot(summary_data.index, summary_data['ektot'], color=color_cycler[1])
-    # subplot_axs[2].plot(summary_data.index, summary_data['etot'], color=color_cycler[2])
-
-    # # Hide x labels and tick labels for all but bottom plot.
-    # for subplot_ax in subplot_axs:
-    #     subplot_ax.label_outer()
-
-    # ax.plot(summary_data.index, summary_data['eptot'], color=color_cycler[0])
-    # ax.set_ylabel("Potential energy [$kcal\:mol^{-1}$]")
-    # ax.set_xlabel("")
-
-    # ax = axs[1][0]
-    # ax.plot(summary_data.index, summary_data['temp'], color=color_cycler[4])
-    # ax.set_xlabel("")
-    # ax.set_ylabel("Temp [K]")
-
-    # ax = axs[2][0]
-    # ax.plot(summary_data.index, summary_data['pres'], color=color_cycler[5])
-    # ax.set_xlabel("Time [ps]")
-    # ax.set_ylabel("Pres ($kcal\:mol^{-1}\:\AA^{-1}$)")
-
-    # ax = axs[0][1]
-    # ax.plot(summary_data.index, summary_data['volume'], color=color_cycler[6])
-    # ax.set_xlabel("")
-    # ax.set_ylabel("Volume ($\AA^{-3}$)")
-
-    # ax = axs[1][1]
-    # ax.plot(summary_data.index, summary_data['density'], color=color_cycler[7])
-    # ax.set_xlabel("")
-    # ax.set_ylabel("Density ($g\:cm^{-3}$)")
-
-    # plt.savefig(join_paths(output_dir, "summary_mdout.pdf"), bbox_inches='tight')
-
     
     return None
 

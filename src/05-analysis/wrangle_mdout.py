@@ -72,10 +72,10 @@ def main(input_dir, output_dir):
     summary_filepaths = glob.glob(join_paths(input_dir, "summary.*"))
     summary_data = import_summary_data(summary_filepaths)
     
-    rmsd_path = join_paths(input_dir, "rmsd.all.agr")
-    rmsd_data = import_rmsd(rmsd_path)
+    # rmsd_path = join_paths(input_dir, "rmsd.all.agr")
+    # rmsd_data = import_rmsd(rmsd_path)
 
-    summary_data['rmsd'] = rmsd_data['rmsd'].to_numpy()
+    # summary_data['rmsd'] = rmsd_data['rmsd'].to_numpy()
 
     summary_data.to_csv(join_paths(output_dir, "summary_mdout.csv"))
 

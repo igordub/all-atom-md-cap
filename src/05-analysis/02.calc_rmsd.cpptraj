@@ -1,0 +1,6 @@
+# Calculate RMSD for structure with no water
+# Usage: cpptraj -i src/05-analysis/02.calc_rmsd.cpptraj
+
+parm data/05-analysis/complex.no_water.prmtop
+trajin data/05-analysis/prod.no_water.mdcrd
+rmsd all first :1-403&!@H= out data/05-analysis/rmsd.CA.agr mass

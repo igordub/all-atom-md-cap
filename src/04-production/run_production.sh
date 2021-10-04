@@ -4,22 +4,22 @@
 # and changing MD_END_JOB
 # Good practice is to start with MD_END_JOB=MD_START_JOB
 
-MD_START_JOB=2
-MD_END_JOB=2
+MD_START_JOB=1
+MD_END_JOB=1
 # set MD_CURRENT_JOB=$MD_START_JOB
 # set MD_INPUT=0
 
-SRC_DIR="src/production"
+SRC_DIR="src/04-production"
 TMP_DIR="tmp"
-INPUT_DIR="data/pressure"
-OUTPUT_DIR="data/production"
+INPUT_DIR="data/03-equilibration"
+OUTPUT_DIR="data/04-production"
 
-PRMTOP_PATH="data/structure/protein.prmtop"
+PRMTOP_PATH="data/00-structure/complex.prmtop"
 
-# Copy coordinate file from pressure equilibration
+# Copy coordinate file from density equilibration
 # as the first input coordiante file for production
-printf -v INPUT_FILENAME "prod.%02d" "1"
-cp ${INPUT_DIR}/pres.ncrst ${OUTPUT_DIR}/${INPUT_FILENAME}.ncrst
+printf -v INPUT_FILENAME "prod.%02d" "0"
+cp ${INPUT_DIR}/eq.ncrst ${OUTPUT_DIR}/${INPUT_FILENAME}.ncrst
 
 echo -n "Starting script at: "
 date
