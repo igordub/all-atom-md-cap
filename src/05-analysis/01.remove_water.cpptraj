@@ -1,0 +1,15 @@
+# Remove water
+# Usage: cpptraj -i src/05-analysis/01.remove_water.cpptraj
+
+parm data/00-structure/complex.prmtop
+trajin data/04-production/prod.*.mdcrd
+
+autoimage
+strip :WAT ! Remove water from trajectories
+rms fit :1-403
+trajout data/04-production/prod.no_water.mdcrd
+
+parmstrip :WAT ! Remove water from topology
+parmwrite out data/00-structure/complex.no_water.prmtop
+
+go

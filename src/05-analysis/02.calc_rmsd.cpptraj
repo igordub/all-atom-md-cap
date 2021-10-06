@@ -1,6 +1,9 @@
-# Calculate RMSD for structure with no water
+# Calculate mass-weighted RMSD for protein backbone
 # Usage: cpptraj -i src/05-analysis/02.calc_rmsd.cpptraj
 
-parm data/05-analysis/complex.no_water.prmtop
-trajin data/05-analysis/prod.no_water.mdcrd
-rmsd all first :1-403&!@H= out data/05-analysis/rmsd.CA.agr mass
+parm data/00-structure/complex.no_water.prmtop
+trajin data/04-production/prod.no_water.mdcrd
+
+rmsd all first :1-403&@CA= out data/05-analysis/rmsd.CA.agr mass
+
+go

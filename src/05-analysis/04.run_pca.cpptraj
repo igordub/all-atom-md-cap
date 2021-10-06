@@ -2,8 +2,9 @@
 # all atom MD production simulation coordinates
 # Usage: cpptraj -i src/05-analysis/04.run_pca.cpptraj
 
-parm data/05-analysis/protein.no_water.prmtop
-trajin data/05-analysis/prod.no_water.mdcrd
+parm data/00-structure/complex.no_water.prmtop
+trajin data/04-production/prod.no_water.mdcrd
+
 rms first :*&@CA=
 average crdset structure-average
 createcrd structure-trajectories
@@ -17,3 +18,5 @@ crdaction structure-trajectories matrix mwcovar \
 
 runanalysis diagmatrix structure-covar out data/05-analysis/eigmodes.dat \
   vecs 100
+
+go

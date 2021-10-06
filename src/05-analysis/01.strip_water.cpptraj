@@ -1,8 +1,0 @@
-# Processes MD production simulation coordinates
-# Usage: cpptraj -i src/05-analysis/01.strip_water.cpptraj
-
-parm data/00-structure/complex.prmtop
-trajin data/04-production/prod.*.mdcrd ! Load all trajectories at once
-autoimage ! Recentre
-strip :WAT ! Strip water
-trajout data/05-analysis/prod.no_water.mdcrd netcdf

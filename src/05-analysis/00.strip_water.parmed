@@ -1,5 +1,0 @@
-# Deletes waters from topology file
-# Usage: parmed data/00-structure/complex.prmtop src/05-analysis/00.strip_water.parmed
-strip :WAT
-parmout data/05-analysis/complex.no_water.prmtop
-go
