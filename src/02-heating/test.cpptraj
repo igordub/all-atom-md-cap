@@ -1,0 +1,15 @@
+# Reimage trajectories
+# Usage: cpptraj -i src/02-heating/test.cpptraj
+
+parm data/00-structure/complex.prmtop
+
+trajin data/00-structure/complex.inpcrd
+trajin data/01-minimisation/01.min_solv.ncrst
+trajin data/01-minimisation/02.min_solu.ncrst
+trajin data/02-heating/heat.ncrst
+
+autoimage
+
+trajout tmp/test.nc
+
+go
