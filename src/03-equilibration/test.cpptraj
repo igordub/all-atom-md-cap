@@ -9,8 +9,7 @@ trajin data/01-minimisation/02.min_solu.ncrst
 trajin data/02-heating/heat.ncrst
 trajin data/03-equilibration/eq.ncrst
 
-autoimage
-rmsd fit :1-403
+autoimage :1-403
 
 trajout tmp/test.nc
 
