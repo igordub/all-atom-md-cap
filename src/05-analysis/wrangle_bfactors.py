@@ -70,16 +70,17 @@ def main(input_dir, output_dir):
         None
 
     """ 
-    bfactors_exp = pd.read_csv(join_paths(input_dir, "bfactors.exp.csv"))
-    bfactors_md = import_md_bfactors(join_paths(input_dir, "bfactors.back.agr"))
-    bfactors_enm = import_enm_bfactors(join_paths(input_dir, "mode.bfactors"))
+    # bfactors_exp = pd.read_csv(join_paths("data/external", "bfactors.exp.csv"))
+    bfactors_md = import_md_bfactors(join_paths("data/05-analysis", "bfactors.CA.agr"))
+    bfactors_enm = import_enm_bfactors(join_paths("data/external", "mode.bfactors"))
+    # Renumber residues
+    # For the future, use PDB files processed for all-atom MD 
+    # when running ENM simulations
 
-    print(bfactors_md.head)
-
-    bfactors = bfactors_exp.copy()
-    bfactors.rename(columns={'bfactor': 'bfactor_exp'}, inplace=True)
-    bfactors['bfactor_md'] = bfactors_md['bfactor']
-    bfactors['bfactor_enm'] = bfactors_enm['bfactor_fullscaled']
+    bfactors = bfactors_enm[['residue_number', 'bfactor_exp', 'bfactor_scaled']].copy()
+    bfactors.rename(columns={'bfactor_scaled': 'bfactor_enm'}, inplace=True)
+    bfactors['bfactor_md'] = bfactors_md['bfactor'][
+        bfactors_md['residue_number'].isin(bfactors['residue_number'])]
 
     bfactors.to_csv(join_paths(output_dir, "bfactors.csv"), index=None)
 
@@ -125,11 +126,11 @@ def import_enm_bfactors(filepath):
     bfactors.columns = ['record_name', 'atom_number', 'atom_name',
         'residue_name', 'chain_id', 'residue_number', 
         'bfactor_pred', 'bfactor_fullscaled', 'bfactor_scaled', 
-        'bfactor']
+        'bfactor_exp']
     bfactors.astype({'record_name': str, 'atom_number': int, 'atom_name': str,
         'residue_name': str, 'chain_id':str, 'residue_number': int, 
         'bfactor_pred': float, 'bfactor_fullscaled': float, 'bfactor_scaled': float, 
-        'bfactor': float})
+        'bfactor_exp': float})
 
     return bfactors
 

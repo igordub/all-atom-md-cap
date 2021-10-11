@@ -1,4 +1,4 @@
-CAP_2cAMP: heat equilibration
+CAP_2cAMP: heat equilibration 200 ps
 &cntrl
     imin=0, 
     irest=0,

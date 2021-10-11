@@ -46,7 +46,7 @@ def main_commandline(input_dir, output_dir):
 
     """ 
     logger = logging.getLogger(__name__)
-    logger.info('wrangle processed .mdout data')
+    logger.info('plot wrangled data')
 
     main(input_dir, output_dir)
 
@@ -72,10 +72,14 @@ def main(input_dir, output_dir):
     summary_filepaths = glob.glob(join_paths(input_dir, "summary.*"))
     summary_data = import_summary_data(summary_filepaths)
     
-    # rmsd_path = join_paths(input_dir, "rmsd.all.agr")
-    # rmsd_data = import_rmsd(rmsd_path)
+    rmsd_path = join_paths("data/05-analysis", "rmsd.CA.agr")
+    rmsd_data = import_rmsd(rmsd_path)
+    # Wrong time units
+    rmsd_data.index *=  10
+    rmsd_data.index += 250 # Heating and equilibration time
 
-    # summary_data['rmsd'] = rmsd_data['rmsd'].to_numpy()
+    summary_data['rmsd'] = 0
+    summary_data.loc[rmsd_data.index,'rmsd']  = rmsd_data['rmsd'].to_numpy()
 
     summary_data.to_csv(join_paths(output_dir, "summary_mdout.csv"))
 

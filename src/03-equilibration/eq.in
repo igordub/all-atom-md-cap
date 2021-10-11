@@ -1,4 +1,4 @@
-CAP_2cAMP: density equilibration
+CAP_2cAMP: density equilibration 50 ps
 &cntrl
     imin=0,
     irest=1,

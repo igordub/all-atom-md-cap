@@ -48,7 +48,7 @@ def main_commandline(input_dir, output_dir):
 
     """ 
     logger = logging.getLogger(__name__)
-    logger.info('wrangle processed .mdout data')
+    logger.info('plot B-factors')
 
     main(input_dir, output_dir)
 
@@ -73,13 +73,16 @@ def main(input_dir, output_dir):
     """
     config = utils.read_config()
     # plt.style.use(config['viz']['default'])
+    color_cycler = plt.rcParams['axes.prop_cycle'].by_key()['color']
+
     bfactors = pd.read_csv(join_paths(input_dir, "bfactors.csv"))
 
     _, ax = plt.subplots(figsize=(4,2.5), constrained_layout=True)
 
-    ax.plot(bfactors['residue_number'], bfactors['bfactor_exp'], label='exp')
-    ax.plot(bfactors['residue_number'], bfactors['bfactor_md'], label='MD')
-    ax.plot(bfactors['residue_number'], bfactors['bfactor_enm'], label='ENM')
+    ax.plot(bfactors['residue_number'], bfactors['bfactor_md'], label='MD', color=color_cycler[0])
+    ax.plot(bfactors['residue_number'], bfactors['bfactor_enm'], label='ENM', color=color_cycler[1])
+    ax.plot(bfactors['residue_number'], bfactors['bfactor_exp'], label='exp', color=color_cycler[2])
+
     ax.set_ylabel("B-factor")
     ax.set_xlabel("Residue number")
     ax.set_title("B-factor comparison")
