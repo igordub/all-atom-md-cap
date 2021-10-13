@@ -50,7 +50,7 @@ def main_commandline(input_dir, output_dir):
 
     """ 
     logger = logging.getLogger(__name__)
-    logger.info('wrangle processed .mdout data')
+    logger.info('plot mdout data')
 
     main(input_dir, output_dir)
 
